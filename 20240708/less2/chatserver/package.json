@@ -1,0 +1,14 @@
+{
+  "name": "chatserver",
+  "version": "1.0.0",
+  "main": "chatserver.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Inna",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}
