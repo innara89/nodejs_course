@@ -1,10 +1,9 @@
+
 // 1. Import 'http' module
 const http = require('http');
 const url = require('url');
 
-
-
-// Resource database
+// 'customers' - Resource database
 const customers = [
     {
         id: 1,
@@ -150,34 +149,61 @@ const customers = [
 
 // 2. Create a server
 const server = http.createServer((request, response) => {
-
     // API structure
+    // -- 'http://localhost:3006/api/v1/customers' --
+    // /api/v1/customers - GET (ALL)
+    // /api/v1/customers/{id} - GET (ONE)
+    // /api/v1/customers - POST --> {body: {name:, address:, ...} }
+    // /api/v1/customers/{id} - PUT --> {body: {id:, name:, address:, ...} }
+    // /api/v1/customers/{id} - DELETE
+    // /api/v1/customers/{id} - PATCH --> {body: {id:, name:} }
 
     // 1. Break-down URL to components
+    const parsedUrl = url.parse(request.url, true);
+    const pathname = parsedUrl.pathname; // --> /api/v1/customers
+    const method = request.method; // --> GET
 
-    const parseUrl = url.parse(request.url, true);
-    const pathname = parseUrl.pathname;
-    const method = request.method;
-    const customerPathBasic = '/api/v1/customers'
-    
+    const arrUrlParts = pathname.split('/'); // Break URL to '/' parts
+    const lastPart = arrUrlParts[arrUrlParts.length - 1]; // Extract last part
+    const lastLastPart = arrUrlParts[arrUrlParts.length - 2];
 
-    if (pathname === '/api/v1/customers' && method === 'GET') {
-        response.writeHead(200, { 'Content-Type': 'application/json' });
-        response.end(JSON.stringify(customers));;
+    // 3. Handle request on all resources - GET (ALL), POST
+    if (lastPart === 'customers' || lastLastPart === 'customers') {
+        if (lastPart === 'customers') {
+            if (method === 'GET') { // GET (ALL)
+                response.writeHead(200, {'Content-Type': 'application/json'});
+                response.end(JSON.stringify(customers));
+            } else if (method === 'POST') { // POST (CREATE)
+                // A. Extract body from request
+                // B. Add new customer to the database
+                // C. Send the new customer object as JSON to the response
+            }
+        } else {
+            if (method === 'GET') { // GET (ONE)
+                // lastPart is a string
+                const customer = customers.find(c => c.id === parseInt(lastPart));
 
-    }
-   else if (pathname === '/api/v1/customers/*' && method === 'GET') {
-      
-      const customer = customers.find(c=> c.id === customerId);
-
-        response.writeHead(200, { 'Content-Type': 'application/json' });
-    
-        response.end(JSON.stringify(customer));;
-
-    }
-    else {
-        response.writeHead(404, { 'Content-Type': 'text/plan' });
-        response.end('Api endpoint not found');
+                if (customer) {
+                    response.writeHead(200, {'Content-Type': 'application/json'});
+                    response.end(JSON.stringify(customer));
+                } else {
+                    response.writeHead(404, {'Content-Type': 'application/json'});
+                    response.end(JSON.stringify({message: `Customer '{lastPart}' not found!`}));
+                }
+                
+            } else if (method === 'PUT') { // PUT (UPDATE)
+                // A. Extract body from request
+                // B. Add new customer to the database
+                // C. Send the new customer object as JSON to the response
+            } else if (method === 'DELETE') { // DELETE (DELETE)
+                // A. Extract body from request
+                // B. Add new customer to the database
+                // C. Send the new customer object as JSON to the response
+            }
+        }
+    } else {
+        response.writeHead(404, {'Content-Type': 'application/json'});
+        response.end(JSON.stringify({message: 'API endpoint not found!'}));
     }
 });
 
