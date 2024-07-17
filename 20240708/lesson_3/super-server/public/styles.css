@@ -1,0 +1,35 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+#chat {
+    border: 1px solid #ccc;
+    padding: 10px;
+    height: 300px;
+    overflow-y: scroll;
+    margin-bottom: 10px;
+}
+
+#message {
+    width: calc(100% - 60px);
+}
+
+h1 {
+    color: #333;
+}
+
+p {
+    color: #666;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
+}
