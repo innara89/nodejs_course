@@ -3,6 +3,7 @@
 const http = require('http');
 const url = require('url');
 
+// kobi comment
 // 'customers' - Resource database
 const customers = [
     {
