@@ -1,0 +1,6 @@
+C:\inna\nodejs_course\20240708\lesson 4\express_simple>npm init -y
+C:\inna\nodejs_course\20240708\lesson 4\express_simple>npm i express
+
+
+C:\inna\nodejs_course\20240708\lesson 4\express_ejs>npm i ejs
+C:\inna\nodejs_course\20240708\lesson 4\express_ejs>npm i ejs express

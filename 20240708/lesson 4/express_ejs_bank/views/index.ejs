@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Banking App</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+    <h1>Welcome, <%= user.name %>!</h1>
+    <h2>Your Accounts</h2>
+    <ul>
+        <% user.accounts.forEach(function(account) { %>
+            <li>Account Number: <%= account.number %>, Balance: $<%= account.balance %></li>
+        <% }); %>
+    </ul>
+    <a href="/transfer">Transfer Funds</a>
+    <a href="/transactions">View Transactions</a>
+</body>
+</html>

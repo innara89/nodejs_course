@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transactions</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+    <h1>Transaction History</h1>
+    <ul>
+        <% transactions.forEach(function(transaction) { %>
+            <li><%= transaction.date %>: $<%= transaction.amount %> from <%= transaction.from %> to <%= transaction.to %></li>
+        <% }); %>
+    </ul>
+    <a href="/">Back to Home</a>
+</body>
+</html>
