@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transfer Funds</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+    <h1>Transfer Funds</h1>
+    <form action="/transfer" method="POST">
+        <label for="fromAccount">From Account:</label>
+        <select name="fromAccount" id="fromAccount">
+            <% user.accounts.forEach(function(account) { %>
+                <option value="<%= account.number %>"><%= account.number %> ($<%= account.balance %>)</option>
+            <% }); %>
+        </select>
+        <br>
+        <label for="toAccount">To Account:</label>
+        <select name="toAccount" id="toAccount">
+            <% user.accounts.forEach(function(account) { %>
+                <option value="<%= account.number %>"><%= account.number %> ($<%= account.balance %>)</option>
+            <% }); %>
+        </select>
+        <br>
+        <label for="amount">Amount:</label>
+        <input type="number" name="amount" id="amount" required>
+        <br>
+        <button type="submit">Transfer</button>
+    </form>
+    <a href="/">Back to Home</a>
+</body>
+</html>
